@@ -30,8 +30,11 @@ const Section = () => {
           key={company}
           className={`row card-panel ${status}`}
           onClick={(e) => {
+            if (e.currentTarget.classList.contains("highlight")) {
+              setCompanyIndex(-1);
+              return;
+            }
             setCompanyIndex(index);
-            e.currentTarget.classList.toggle("highlight");
           }}
         >
           <div className="col s12 m4 l6">
