@@ -1,7 +1,11 @@
 import "./CompanyDetails.css";
-import { Props } from "../../types/interface";
+import { Company } from "../../types/types";
 
-const CompanyDetails: React.FC<Props> = ({ company }) => {
+interface CompanyDetailsProps {
+  company: Company;
+}
+
+const CompanyDetails: React.FC<CompanyDetailsProps> = ({ company }) => {
   return (
     <div className="row details">
       <div className="col s12 m12">

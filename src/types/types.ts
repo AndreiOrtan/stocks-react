@@ -5,7 +5,3 @@ export interface Company {
   currentPrice: number;
   oldPrice: number;
 }
-
-export interface Props {
-  company: Company;
-}

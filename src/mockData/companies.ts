@@ -1,4 +1,4 @@
-import { Company } from "../types/interface";
+import { Company } from "../types/types";
 
 const companies: Company[] = [
   {

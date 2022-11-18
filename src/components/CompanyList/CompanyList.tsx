@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import companies from "../../mockData/companies";
 import "./CompanyList.css";
-import CompanyDetails from "../CompanyDetails/CompanyDetails";
 
-const Section = () => {
+interface SectionProps {
+  setSelectedCompany: (id: number) => void;
+}
+
+const Section: React.FC<SectionProps> = ({ setSelectedCompany }) => {
   const [companyIndex, setCompanyIndex] = useState(-1);
-  const [selectedCompany, setSelectedCompany] = useState(companies[0]);
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
       if (e.target !== document.body) {
@@ -33,7 +35,7 @@ const Section = () => {
               return;
             }
             setCompanyIndex(index);
-            setSelectedCompany(companies[index]);
+            setSelectedCompany(index);
           }}
         >
           <div className="col s12 m4 l6">
@@ -56,11 +58,6 @@ const Section = () => {
       );
     }
   );
-  return (
-    <div className="layout">
-      {renderedCompanies}
-      <CompanyDetails company={selectedCompany} />
-    </div>
-  );
+  return <div className="layout">{renderedCompanies}</div>;
 };
 export default Section;
