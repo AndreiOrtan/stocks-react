@@ -5,16 +5,19 @@ import CompanyDetails from "./CompanyDetails/CompanyDetails";
 import companies from "../mockData/companies";
 
 const App = () => {
-  const [selectedCompany, setSelectedCompany] = useState(companies[0]);
+  const [selectedCompanyId, setSelectedCompanyId] = useState(-1);
 
-  const selectedCompanyHandler = (id: number) => {
-    setSelectedCompany(companies[id]);
+  const selectedCompanyIdHandler = (id: number) => {
+    setSelectedCompanyId(id);
   };
   return (
     <React.Fragment>
       <Header />
-      <CompanyList setSelectedCompany={selectedCompanyHandler} />
-      <CompanyDetails company={selectedCompany} />
+      <CompanyList
+        setSelectedCompany={selectedCompanyIdHandler}
+        companies={companies}
+      />
+      <CompanyDetails companyId={selectedCompanyId} />
     </React.Fragment>
   );
 };
