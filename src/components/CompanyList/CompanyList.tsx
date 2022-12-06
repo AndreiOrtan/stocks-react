@@ -3,11 +3,14 @@ import "./CompanyList.css";
 import { Company } from "../../types/types";
 
 interface SectionProps {
-  setSelectedCompany: (id: number) => void;
-  companies: Company[];
+  setSelectedCompanyId: (id: number) => void;
+  companies: Company[] | undefined;
 }
 
-const Section: React.FC<SectionProps> = ({ setSelectedCompany, companies }) => {
+const Section: React.FC<SectionProps> = ({
+  setSelectedCompanyId,
+  companies,
+}) => {
   const [companyId, setCompanyId] = useState(-1);
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
@@ -18,7 +21,7 @@ const Section: React.FC<SectionProps> = ({ setSelectedCompany, companies }) => {
     });
   }, []);
 
-  const renderedCompanies = companies.map(
+  const renderedCompanies = companies?.map(
     ({ companyName, companyInfo, currentPrice, oldPrice, id }) => {
       //calculation values
       const percent = (100 - (oldPrice / currentPrice) * 100).toFixed(2);
@@ -36,7 +39,7 @@ const Section: React.FC<SectionProps> = ({ setSelectedCompany, companies }) => {
               return;
             }
             setCompanyId(id);
-            setSelectedCompany(id);
+            setSelectedCompanyId(id);
           }}
         >
           <div className="col s12 m4 l6">

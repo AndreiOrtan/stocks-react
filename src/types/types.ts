@@ -5,3 +5,8 @@ export interface Company {
   currentPrice: number;
   oldPrice: number;
 }
+
+export interface ICompaniesContext {
+  companies: Company[];
+  asyncFetchCompanies: () => Promise<void>;
+}

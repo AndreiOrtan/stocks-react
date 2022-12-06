@@ -1,23 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState, useContext } from "react";
 import Header from "./Header/Header";
 import CompanyList from "./CompanyList/CompanyList";
 import CompanyDetails from "./CompanyDetails/CompanyDetails";
-import companies from "../mockData/companies";
+import { CompaniesContext } from "./CompaniesProvider/CompaniesContext";
 
 const App = () => {
   const [selectedCompanyId, setSelectedCompanyId] = useState(-1);
 
-  const selectedCompanyIdHandler = (id: number) => {
-    setSelectedCompanyId(id);
-  };
+  const { companies, asyncFetchCompanies } = useContext(CompaniesContext);
+
+  useEffect(() => {
+    asyncFetchCompanies();
+  }, [asyncFetchCompanies]);
+
+  const selectedCompany = useMemo(
+    () =>
+      companies.find((company) => {
+        return company.id === selectedCompanyId;
+      }),
+    [selectedCompanyId, companies]
+  );
+
   return (
     <React.Fragment>
       <Header />
       <CompanyList
-        setSelectedCompany={selectedCompanyIdHandler}
+        setSelectedCompanyId={setSelectedCompanyId}
         companies={companies}
       />
-      <CompanyDetails companyId={selectedCompanyId} />
+      <CompanyDetails selectedCompany={selectedCompany} />
     </React.Fragment>
   );
 };

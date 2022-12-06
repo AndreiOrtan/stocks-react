@@ -1,12 +1,13 @@
 import "./CompanyDetails.css";
-// import { Company } from "../../types/types";
+import { Company } from "../../types/types";
 
 interface CompanyDetailsProps {
-  companyId: number;
+  selectedCompany: Company | undefined;
 }
 
-const CompanyDetails: React.FC<CompanyDetailsProps> = ({ companyId }) => {
-  return <div>{companyId}</div>;
+const CompanyDetails: React.FC<CompanyDetailsProps> = ({ selectedCompany }) => {
+  // console.log(selectedCompany);
+  return <div>{selectedCompany?.companyInfo}</div>;
   // return (
   //   <div className="row details">
   //     <div className="col s12 m12">
