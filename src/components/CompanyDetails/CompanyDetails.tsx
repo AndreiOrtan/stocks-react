@@ -1,12 +1,20 @@
 import "./CompanyDetails.css";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import fetchCompanies from "../api/fetchCompanies";
 import { Company } from "../../types/types";
-import { Link } from "react-router-dom";
 
-interface CompanyDetailsProps {
-  selectedCompany: Company | undefined;
-}
+const CompanyDetails = () => {
+  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
+  const { selectedCompanyId } = useParams();
+  console.log(selectedCompanyId);
 
-const CompanyDetails: React.FC<CompanyDetailsProps> = ({ selectedCompany }) => {
+  useEffect(() => {
+    fetchCompanies(selectedCompanyId).then((response) =>
+      setSelectedCompany(response.data)
+    );
+  }, []);
+
   return (
     <>
       <div className="row details">

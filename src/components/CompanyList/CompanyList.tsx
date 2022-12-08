@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./CompanyList.css";
-import { Company } from "../../types/types";
+import { CompaniesContext } from "../CompaniesProvider/CompaniesContext";
 import { Link } from "react-router-dom";
 
-interface SectionProps {
-  setSelectedCompanyId: (id: number) => void;
-  companies: Company[] | undefined;
-}
-
-const Section: React.FC<SectionProps> = ({
-  setSelectedCompanyId,
-  companies,
-}) => {
+const Section = () => {
+  const { companies, setSelectedCompanyId } = useContext(CompaniesContext);
   const [companyId, setCompanyId] = useState(-1);
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
