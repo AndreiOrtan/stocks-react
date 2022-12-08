@@ -4,6 +4,7 @@
 .card-panel {
   border-radius: 3px;
   margin: 0 24px;
+  color: black;
 }
 .current-price {
   font-weight: 600;

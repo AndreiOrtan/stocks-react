@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./CompanyList.css";
 import { Company } from "../../types/types";
+import { Link } from "react-router-dom";
 
 interface SectionProps {
   setSelectedCompanyId: (id: number) => void;
@@ -30,35 +31,38 @@ const Section: React.FC<SectionProps> = ({
       //logic for the component
       const status = companyId === id ? "highlight" : "";
       return (
-        <section
-          key={id}
-          className={`row card-panel ${status}`}
-          onClick={(e) => {
-            if (e.currentTarget.classList.contains("highlight")) {
-              setCompanyId(-1);
-              return;
-            }
-            setCompanyId(id);
-            setSelectedCompanyId(id);
-          }}
-        >
-          <div className="col s12 m4 l6">
-            <div className="companyName">{companyName}</div>
-            <div className="company-info">{companyInfo}</div>
-          </div>
-          <div className="col s12 m4 l6 right-align">
-            <div className="current-price">{`$${currentPrice}`}</div>
-            <div
-              className="old-price"
-              style={{ color: +priceDiff < 0 ? "red" : "green" }}
+        <Link to={`/${id}`} key={id}>
+          {
+            <section
+              className={`row card-panel ${status}`}
+              onClick={(e) => {
+                if (e.currentTarget.classList.contains("highlight")) {
+                  setCompanyId(-1);
+                  return;
+                }
+                setCompanyId(id);
+                setSelectedCompanyId(id);
+              }}
             >
-              {`$${priceDiff}(${
-                currentPrice > oldPrice ? "+" : ""
-              }${percent}%)`}
-            </div>
-            <div className="current-date">{`${new Date()}`}</div>
-          </div>
-        </section>
+              <div className="col s12 m4 l6">
+                <div className="companyName">{companyName}</div>
+                <div className="company-info">{companyInfo}</div>
+              </div>
+              <div className="col s12 m4 l6 right-align">
+                <div className="current-price">{`$${currentPrice}`}</div>
+                <div
+                  className="old-price"
+                  style={{ color: +priceDiff < 0 ? "red" : "green" }}
+                >
+                  {`$${priceDiff}(${
+                    currentPrice > oldPrice ? "+" : ""
+                  }${percent}%)`}
+                </div>
+                <div className="current-date">{`${new Date()}`}</div>
+              </div>
+            </section>
+          }
+        </Link>
       );
     }
   );

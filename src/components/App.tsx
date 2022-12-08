@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState, useContext } from "react";
+import { Route, Routes } from "react-router-dom";
 import Header from "./Header/Header";
 import CompanyList from "./CompanyList/CompanyList";
 import CompanyDetails from "./CompanyDetails/CompanyDetails";
@@ -24,11 +25,21 @@ const App = () => {
   return (
     <React.Fragment>
       <Header />
-      <CompanyList
-        setSelectedCompanyId={setSelectedCompanyId}
-        companies={companies}
-      />
-      <CompanyDetails selectedCompany={selectedCompany} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <CompanyList
+              setSelectedCompanyId={setSelectedCompanyId}
+              companies={companies}
+            />
+          }
+        />
+        <Route
+          path={`${selectedCompany?.id}`}
+          element={<CompanyDetails selectedCompany={selectedCompany} />}
+        />
+      </Routes>
     </React.Fragment>
   );
 };
