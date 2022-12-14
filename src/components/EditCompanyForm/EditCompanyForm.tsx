@@ -1,16 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Company } from "../../types/types";
+import { useState } from "react";
+import { IEditCompanyForm } from "../../types/types";
 
-interface IEditCompanyForm {
-  selectedCompany: Company | null;
-  setIsOpen: (boolean: boolean) => void;
-  selectedCompanyId: String | undefined;
-}
 const EditCompanyForm = ({
   selectedCompany,
   setIsOpen,
   selectedCompanyId,
+  setSelectedCompany,
 }: IEditCompanyForm) => {
   const [companyName, setCompanyName] = useState(selectedCompany?.companyName);
   const [companyInfo, setCompanyInfo] = useState(selectedCompany?.companyInfo);
@@ -18,10 +14,12 @@ const EditCompanyForm = ({
   function editFormHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsOpen(false);
-    axios.put(
-      `https://637905857419b414df889986.mockapi.io/api/stocks/${selectedCompanyId}`,
-      { companyName, companyInfo }
-    );
+    axios
+      .put(
+        `https://637905857419b414df889986.mockapi.io/api/stocks/${selectedCompanyId}`,
+        { companyName, companyInfo }
+      )
+      .then((data) => setSelectedCompany(data.data));
   }
 
   return (

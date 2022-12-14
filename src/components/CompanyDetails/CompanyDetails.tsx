@@ -13,9 +13,10 @@ const CompanyDetails = () => {
   const { selectedCompanyId } = useParams();
 
   useEffect(() => {
-    fetchCompanies(selectedCompanyId).then((response) =>
-      setSelectedCompany(response.data)
-    );
+    fetchCompanies(selectedCompanyId).then((response) => {
+      console.log(response.data);
+      setSelectedCompany(response.data);
+    });
   }, []);
 
   return (
@@ -43,6 +44,7 @@ const CompanyDetails = () => {
                           selectedCompany={selectedCompany}
                           setIsOpen={setIsOpen}
                           selectedCompanyId={selectedCompanyId}
+                          setSelectedCompany={setSelectedCompany}
                         />
                       </div>
                     </div>

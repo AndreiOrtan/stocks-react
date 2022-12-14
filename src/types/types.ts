@@ -12,3 +12,10 @@ export interface ICompaniesContext {
   selectedCompany: undefined | Company | {};
   setSelectedCompanyId: (id: number) => void;
 }
+
+export interface IEditCompanyForm {
+  selectedCompany: Company | null;
+  setIsOpen: (boolean: boolean) => void;
+  selectedCompanyId: String | undefined;
+  setSelectedCompany: (company: Company | null) => void;
+}
