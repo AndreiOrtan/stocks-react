@@ -24,6 +24,7 @@ interface ChildrenProps {
 export const Provider = ({ children }: ChildrenProps) => {
   const [companies, setCompanies] = useState<[]>([]);
   const [selectedCompanyId, setSelectedCompanyId] = useState(-1);
+  console.log("this is the selected company id" + selectedCompanyId);
 
   const selectedCompany = useMemo(
     () =>

@@ -14,13 +14,12 @@ const CompanyDetails = () => {
 
   useEffect(() => {
     fetchCompanies(selectedCompanyId).then((response) => {
-      console.log(response.data);
       setSelectedCompany(response.data);
     });
   }, []);
 
   return (
-    <>
+    <div className="containerr">
       <div className="row details">
         <div className="col s12 m12">
           <div className="card blue-grey darken-1">
@@ -29,11 +28,11 @@ const CompanyDetails = () => {
               <p>{selectedCompany?.companyInfo}</p>
               <button
                 className="waves-effect waves-light btn"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => setIsOpen(true)}
               >
                 Edit
               </button>
-              <Modal open={isOpen}>
+              <Modal open={isOpen} setIsOpen={setIsOpen}>
                 <div className="row">
                   <div className="col s12 m12">
                     <div className="card blue-grey darken-1">
@@ -56,7 +55,7 @@ const CompanyDetails = () => {
         </div>
       </div>
       <Link to={"/"}>Back to main page</Link>
-    </>
+    </div>
   );
 };
 export default CompanyDetails;
