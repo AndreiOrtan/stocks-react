@@ -19,7 +19,7 @@ const CompanyDetails = () => {
   }, []);
 
   return (
-    <div className="containerr">
+    <>
       <div className="row details">
         <div className="col s12 m12">
           <div className="card blue-grey darken-1">
@@ -32,7 +32,7 @@ const CompanyDetails = () => {
               >
                 Edit
               </button>
-              <Modal open={isOpen} setIsOpen={setIsOpen}>
+              <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
                 <div className="row">
                   <div className="col s12 m12">
                     <div className="card blue-grey darken-1">
@@ -55,7 +55,7 @@ const CompanyDetails = () => {
         </div>
       </div>
       <Link to={"/"}>Back to main page</Link>
-    </div>
+    </>
   );
 };
 export default CompanyDetails;

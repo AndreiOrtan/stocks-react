@@ -3,12 +3,12 @@ import "./Modal.css";
 import ReactDom from "react-dom";
 
 interface Modals {
-  open: boolean;
   children: ReactNode;
+  isOpen: boolean;
   setIsOpen: (value: boolean) => void;
 }
 
-const Modal = ({ open, children, setIsOpen }: Modals) => {
+const Modal = ({ children, isOpen, setIsOpen }: Modals) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -20,20 +20,19 @@ const Modal = ({ open, children, setIsOpen }: Modals) => {
     };
     document.body.addEventListener("click", eventHandler);
     return () => {
-      console.log("from cleanUp");
       document.body.removeEventListener("click", eventHandler);
     };
   }, []);
 
-  if (!open) return null;
+  if (!isOpen) return null;
 
   return ReactDom.createPortal(
-    <div className="containerr">
+    <>
       <div className="overlay"></div>
       <div className="modal_styles" ref={ref}>
         {children}
       </div>
-    </div>,
+    </>,
     document.getElementById("portal") as HTMLDivElement
   );
 };

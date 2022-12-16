@@ -1,12 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./CompanyList.css";
 import { CompaniesContext } from "../CompaniesProvider/CompaniesContext";
 import { Link } from "react-router-dom";
+import fetchCompanies from "../api/fetchCompanies";
 
-const Section = () => {
-  const { companies, setSelectedCompanyId } = useContext(CompaniesContext);
+const CompanyList = () => {
+  const { companies, setSelectedCompanyId, setCompanies } =
+    useContext(CompaniesContext);
   const [companyId, setCompanyId] = useState(-1);
+
+  console.log("ran from comList");
+
   useEffect(() => {
+    fetchCompanies().then((response) => setCompanies(response.data));
     document.body.addEventListener("click", (e) => {
       if (e.target !== document.body) {
         return;
@@ -61,4 +67,4 @@ const Section = () => {
   );
   return <div className="layout">{renderedCompanies}</div>;
 };
-export default Section;
+export default CompanyList;

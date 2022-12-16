@@ -1,18 +1,11 @@
-import {
-  createContext,
-  useState,
-  ReactNode,
-  useCallback,
-  useMemo,
-} from "react";
-import fetchCompanies from "../api/fetchCompanies";
+import { createContext, useState, ReactNode, useMemo } from "react";
 import { Company, ICompaniesContext } from "../../types/types";
 
 const defaultValue = {
   companies: [],
-  asyncFetchCompanies: () => Promise.resolve(),
   selectedCompany: undefined,
   setSelectedCompanyId: () => null,
+  setCompanies: () => "",
 };
 
 export const CompaniesContext = createContext<ICompaniesContext>(defaultValue);
@@ -24,7 +17,7 @@ interface ChildrenProps {
 export const Provider = ({ children }: ChildrenProps) => {
   const [companies, setCompanies] = useState<[]>([]);
   const [selectedCompanyId, setSelectedCompanyId] = useState(-1);
-  console.log("this is the selected company id" + selectedCompanyId);
+  console.log(companies);
 
   const selectedCompany = useMemo(
     () =>
@@ -34,14 +27,9 @@ export const Provider = ({ children }: ChildrenProps) => {
     [selectedCompanyId, companies]
   );
 
-  const asyncFetchCompanies = useCallback(async () => {
-    const response = await fetchCompanies();
-    setCompanies(response.data);
-  }, []);
-
   const asd = {
-    asyncFetchCompanies,
     companies,
+    setCompanies,
     selectedCompany,
     setSelectedCompanyId,
   };
