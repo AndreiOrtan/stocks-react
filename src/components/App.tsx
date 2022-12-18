@@ -1,12 +1,17 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 import Header from "./Header/Header";
-import Section from "./CompanyList/CompanyList";
+import CompanyList from "./CompanyList/CompanyList";
+import CompanyDetails from "./CompanyDetails/CompanyDetails";
 
 const App = () => {
   return (
     <React.Fragment>
       <Header />
-      <Section />
+      <Routes>
+        <Route path="/" element={<CompanyList />} />
+        <Route path="/:selectedCompanyId" element={<CompanyDetails />} />
+      </Routes>
     </React.Fragment>
   );
 };
