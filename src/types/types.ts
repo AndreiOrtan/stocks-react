@@ -9,8 +9,8 @@ export interface Company {
 export interface ICompaniesContext {
   companies: Company[];
   // asyncFetchCompanies: () => Promise<void>;
-  selectedCompany: undefined | Company | {};
-  setSelectedCompanyId: (id: number) => void;
+  // selectedCompany: undefined | Company | {};
+  // setSelectedCompanyId: (id: number) => void;
   setCompanies: (value: any) => void;
 }
 

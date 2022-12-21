@@ -1,10 +1,9 @@
-import { createContext, useState, ReactNode, useMemo } from "react";
-import { Company, ICompaniesContext } from "../../types/types";
+import { createContext, useState, ReactNode } from "react";
+import { ICompaniesContext } from "../../types/types";
 
 const defaultValue = {
   companies: [],
-  selectedCompany: undefined,
-  setSelectedCompanyId: () => null,
+
   setCompanies: () => "",
 };
 
@@ -16,25 +15,14 @@ interface ChildrenProps {
 
 export const Provider = ({ children }: ChildrenProps) => {
   const [companies, setCompanies] = useState<[]>([]);
-  const [selectedCompanyId, setSelectedCompanyId] = useState(-1);
   console.log(companies);
 
-  const selectedCompany = useMemo(
-    () =>
-      companies.find((company: Company) => {
-        return company.id === selectedCompanyId;
-      }),
-    [selectedCompanyId, companies]
-  );
-
-  const asd = {
+  const contextValues = {
     companies,
     setCompanies,
-    selectedCompany,
-    setSelectedCompanyId,
   };
   return (
-    <CompaniesContext.Provider value={asd}>
+    <CompaniesContext.Provider value={contextValues}>
       {children}
     </CompaniesContext.Provider>
   );
