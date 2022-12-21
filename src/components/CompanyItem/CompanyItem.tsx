@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { Company } from "../../types/types";
 import { useNavigate } from "react-router-dom";
+import "./CompanyItem.css";
 
 interface ICompanyItem {
   companyData: Company;
 }
 
 const CompanyItem = ({ companyData }: ICompanyItem) => {
-  const [isHovered, setIsHovered] = useState(false);
+  //   const [isHovered, setIsHovered] = useState(false);
 
   let navigate = useNavigate();
 
@@ -22,9 +22,9 @@ const CompanyItem = ({ companyData }: ICompanyItem) => {
 
   return (
     <section
-      className={`row card-panel ${isHovered ? "highlight" : ""}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={`row card-panel highlight`}
+      //   onMouseEnter={() => setIsHovered(true)}
+      //   onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
         navigate(`${companyData.id}`);
       }}
