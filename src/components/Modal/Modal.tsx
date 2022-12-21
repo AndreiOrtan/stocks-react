@@ -13,9 +13,8 @@ const Modal = ({ children, isOpen, setIsOpen }: Modals) => {
 
   return ReactDom.createPortal(
     <>
-      <div className="overlay" onClick={() => setIsOpen(false)}>
-        <div className="modal_styles">{children}</div>
-      </div>
+      <div className="overlay" onClick={() => setIsOpen(false)}></div>
+      <div className="modal_styles">{children}</div>
     </>,
     document.getElementById("portal") as HTMLDivElement
   );
