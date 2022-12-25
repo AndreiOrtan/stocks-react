@@ -7,8 +7,6 @@ interface ICompanyItem {
 }
 
 const CompanyItem = ({ companyData }: ICompanyItem) => {
-  //   const [isHovered, setIsHovered] = useState(false);
-
   let navigate = useNavigate();
 
   //calculation values
@@ -23,8 +21,6 @@ const CompanyItem = ({ companyData }: ICompanyItem) => {
   return (
     <section
       className={`row card-panel highlight`}
-      //   onMouseEnter={() => setIsHovered(true)}
-      //   onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
         navigate(`${companyData.id}`);
       }}
