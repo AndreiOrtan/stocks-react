@@ -14,12 +14,11 @@ interface ChildrenProps {
 
 export const Provider = ({ children }: ChildrenProps) => {
   const [companies, setCompanies] = useState<[]>([]);
-
   const contextValues = {
     companies,
     setCompanies,
   };
-  
+
   return (
     <CompaniesContext.Provider value={contextValues}>
       {children}

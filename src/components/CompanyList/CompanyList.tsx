@@ -6,7 +6,6 @@ import CompanyItem from "../CompanyItem/CompanyItem";
 
 const CompanyList = () => {
   const { companies, setCompanies } = useContext(CompaniesContext);
-
   useEffect(() => {
     fetchCompanies().then(setCompanies);
   }, [setCompanies]);
