@@ -17,6 +17,6 @@ export interface ICompaniesContext {
 export interface IEditCompanyForm {
   selectedCompany: Company | null;
   setIsOpen: (boolean: boolean) => void;
-  selectedCompanyId: String | undefined;
+  selectedCompanyId: String;
   setSelectedCompany: (company: Company | null) => void;
 }

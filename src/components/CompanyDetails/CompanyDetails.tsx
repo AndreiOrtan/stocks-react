@@ -1,22 +1,22 @@
 import "./CompanyDetails.css";
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import fetchCompanies from "../api/fetchCompanies";
-import { Company } from "../../types/types";
-import Modal from "../Modal/Modal";
+import useGetCompanyIdRouteParam from "../../hooks/useGetCompanyIdRouteParam/useGetCompanyIdRouteParam";
+import { useState } from "react";
+import Modal from "../Modal";
 import EditCompanyForm from "../EditCompanyForm/EditCompanyForm";
+import useGetCompanyDetails from "../../hooks/useGetCompanyDetails/useGetCompanyDetails";
+import Spinner from "../Spinner/Spinner";
 
 const CompanyDetails = () => {
-  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { selectedCompanyId } = useParams();
+  const selectedCompanyId = useGetCompanyIdRouteParam();
 
-  useEffect(() => {
-    fetchCompanies(selectedCompanyId).then((response) => {
-      setSelectedCompany(response.data);
-    });
-  }, []);
+  const { isLoading, selectedCompany, setSelectedCompany } =
+    useGetCompanyDetails(selectedCompanyId);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
@@ -54,7 +54,6 @@ const CompanyDetails = () => {
           </div>
         </div>
       </div>
-      <Link to={"/"}>Back to main page</Link>
     </>
   );
 };

@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import { IEditCompanyForm } from "../../types/types";
+import { updateCompany } from "../api/fetchCompanies";
 
 const EditCompanyForm = ({
   selectedCompany,
@@ -14,12 +14,9 @@ const EditCompanyForm = ({
   function editFormHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsOpen(false);
-    axios
-      .put(
-        `https://637905857419b414df889986.mockapi.io/api/stocks/${selectedCompanyId}`,
-        { companyName, companyInfo }
-      )
-      .then((data) => setSelectedCompany(data.data));
+    updateCompany(selectedCompanyId, { companyName, companyInfo }).then(
+      (data) => setSelectedCompany(data)
+    );
   }
 
   return (
