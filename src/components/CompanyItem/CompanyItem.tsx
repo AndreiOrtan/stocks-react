@@ -18,30 +18,43 @@ const CompanyItem = ({ companyData }: ICompanyItem) => {
     2
   );
 
+  // <section
+  //       className={`row card-panel highlight`}
+  //       onClick={() => {
+  //         navigate(`${companyData.id}`);
+  //       }}
+  //     >
+  //       <div className="col s12 m4 l6">
+  //         <div className="companyName">{companyData.companyName}</div>
+  //         <div className="company-info">{companyData.companyInfo}</div>
+  //       </div>
+  //       <div className="col s12 m4 l6 right-align">
+  //         <div className="current-price">{`$${companyData.currentPrice}`}</div>
+  //         <div
+  //           className="old-price"
+  //           style={{ color: +priceDiff < 0 ? "red" : "green" }}
+  //         >
+  //           {`$${priceDiff}(${
+  //             companyData.currentPrice > companyData.oldPrice ? "+" : ""
+  //           }${percent}%)`}
+  //         </div>
+  //         <div className="current-date">{`${new Date()}`}</div>
+  //       </div>
+  //     </section>
   return (
-    <section
-      className={`row card-panel highlight`}
+    <tr
+      className="highlight"
       onClick={() => {
         navigate(`${companyData.id}`);
       }}
     >
-      <div className="col s12 m4 l6">
-        <div className="companyName">{companyData.companyName}</div>
-        <div className="company-info">{companyData.companyInfo}</div>
-      </div>
-      <div className="col s12 m4 l6 right-align">
-        <div className="current-price">{`$${companyData.currentPrice}`}</div>
-        <div
-          className="old-price"
-          style={{ color: +priceDiff < 0 ? "red" : "green" }}
-        >
-          {`$${priceDiff}(${
-            companyData.currentPrice > companyData.oldPrice ? "+" : ""
-          }${percent}%)`}
-        </div>
-        <div className="current-date">{`${new Date()}`}</div>
-      </div>
-    </section>
+      <td>{companyData.companyName}</td>
+      <td>${companyData.currentPrice}</td>
+      <td style={{ color: +priceDiff < 0 ? "red" : "green" }}>{`$${priceDiff}(${
+        companyData.currentPrice > companyData.oldPrice ? "+" : ""
+      }${percent}%)`}</td>
+      <td>{`${new Date()}`}</td>
+    </tr>
   );
 };
 

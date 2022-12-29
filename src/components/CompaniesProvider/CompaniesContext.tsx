@@ -1,21 +1,27 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
+import React, {
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+  FC,
+} from "react";
 import { ICompaniesContext, Company } from "../../types/types";
 import { fetchCompanies } from "../api/fetchCompanies";
 
 const defaultValue = {
   companies: [],
   filters: { sortingOrder: "" },
-  setCompanies: () => "",
-  setFilters: () => "",
+  setCompanies: () => {},
+  setFilters: () => {},
 };
 
 export const CompaniesContext = createContext<ICompaniesContext>(defaultValue);
 
-interface ChildrenProps {
+interface ProviderProps {
   children: ReactNode;
 }
 
-export const Provider = ({ children }: ChildrenProps) => {
+export const Provider: FC<ProviderProps> = ({ children }) => {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [filters, setFilters] = useState({ sortingOrder: "asc" });
 

@@ -14,9 +14,23 @@ const CompanyList = () => {
     fetchCompanies().then(setCompanies);
   }, [setCompanies]);
 
-  const renderedCompanies = sortedCompanies?.map((company) => {
+  const renderedCompanies = sortedCompanies.map((company) => {
     return <CompanyItem key={company.id} companyData={company} />;
   });
-  return <div className="layout">{renderedCompanies}</div>;
+  return (
+    <div className="layout">
+      <table className="ui celled table">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Company profit</th>
+            <th>Fluctation</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>{renderedCompanies}</tbody>
+      </table>
+    </div>
+  );
 };
 export default CompanyList;
