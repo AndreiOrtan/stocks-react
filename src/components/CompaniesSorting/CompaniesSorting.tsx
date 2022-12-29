@@ -1,10 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CompaniesContext } from "../CompaniesProvider/CompaniesContext";
-import { Company } from "../../types/types";
-import useFilteredCompanies from "../../hooks/useFilteredCompanies/useFilteredComanies";
 
 const CompaniesSorting = () => {
-  const { setFilters } = useFilteredCompanies();
+  const { setFilters } = useContext(CompaniesContext);
 
   const descClickHandler = () => {
     setFilters((prevState: any) => ({ ...prevState, sortingOrder: "desc" }));

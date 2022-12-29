@@ -1,5 +1,6 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 import { ICompaniesContext, Company } from "../../types/types";
+import { fetchCompanies } from "../api/fetchCompanies";
 
 const defaultValue = {
   companies: [],

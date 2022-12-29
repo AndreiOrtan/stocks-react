@@ -6,9 +6,11 @@ import CompanyItem from "../CompanyItem/CompanyItem";
 import useFilteredCompanies from "../../hooks/useFilteredCompanies/useFilteredComanies";
 
 const CompanyList = () => {
-  const { companies, setCompanies } = useContext(CompaniesContext);
+  const { setCompanies } = useContext(CompaniesContext);
   const { sortedCompanies } = useFilteredCompanies();
+
   useEffect(() => {
+    console.log("ran");
     fetchCompanies().then(setCompanies);
   }, [setCompanies]);
 

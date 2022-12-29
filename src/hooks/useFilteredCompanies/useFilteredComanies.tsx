@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { CompaniesContext } from "../../components/CompaniesProvider/CompaniesContext";
 
 const useFilteredCompanies = () => {
-  const { companies, filters, setFilters } = useContext(CompaniesContext);
+  const { companies, filters } = useContext(CompaniesContext);
 
   function getSortingValues(company: Company) {
     return company.companyName;
@@ -19,7 +19,7 @@ const useFilteredCompanies = () => {
       return valueB.localeCompare(valueA);
     }
   });
-  return { setFilters, sortedCompanies };
+  return { sortedCompanies };
 };
 
 export default useFilteredCompanies;
