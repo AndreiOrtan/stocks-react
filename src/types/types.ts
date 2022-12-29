@@ -8,10 +8,9 @@ export interface Company {
 
 export interface ICompaniesContext {
   companies: Company[];
-  // asyncFetchCompanies: () => Promise<void>;
-  // selectedCompany: undefined | Company | {};
-  // setSelectedCompanyId: (id: number) => void;
+  filters: { sortingOrder: String };
   setCompanies: (value: any) => void;
+  setFilters: (value: any) => void;
 }
 
 export interface IEditCompanyForm {
