@@ -11,7 +11,7 @@ const ReactStocksRoutes: React.FC = () => {
         path="/"
         element={
           <>
-            <CompaniesSorting /> <CompanyList />
+            <CompanyList />
           </>
         }
       />

@@ -4,6 +4,7 @@ import { CompaniesContext } from "../CompaniesProvider/CompaniesContext";
 import { fetchCompanies } from "../api/fetchCompanies";
 import CompanyItem from "../CompanyItem/CompanyItem";
 import useFilteredCompanies from "../../hooks/useFilteredCompanies/useFilteredComanies";
+import CompaniesSorting from "../CompaniesSorting/CompaniesSorting";
 
 const CompanyList = () => {
   const { setCompanies } = useContext(CompaniesContext);
@@ -22,7 +23,7 @@ const CompanyList = () => {
       <table className="ui celled table">
         <thead>
           <tr>
-            <th>Company Name</th>
+            <th>Company Name {<CompaniesSorting />}</th>
             <th>Company profit</th>
             <th>Fluctation</th>
             <th>Date</th>
