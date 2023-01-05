@@ -4,7 +4,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "../Profile/Profile";
 
 const Header = () => {
-  const { loginWithRedirect, logout } = useAuth0();
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
+
   return (
     <div className="container">
       <nav className="navbar">
@@ -12,16 +13,14 @@ const Header = () => {
         <Link to={"/"} className="home-button">
           <button className="ui button"> Home</button>
         </Link>
-        <button className="ui button" onClick={() => loginWithRedirect()}>
-          Log In
-        </button>
-        <button
-          onClick={() => logout({ returnTo: window.location.origin })}
-          className="ui button"
-        >
-          Log Out
-        </button>
-        <Profile />
+
+        {isAuthenticated ? (
+          <Profile />
+        ) : (
+          <button className="ui button" onClick={() => loginWithRedirect()}>
+            Log In
+          </button>
+        )}
       </nav>
     </div>
   );

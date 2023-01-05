@@ -14,6 +14,8 @@ root.render(
         domain="dev-eggyuo3hd8fqyl5b.us.auth0.com"
         clientId="9z8DVvYEf5kiDebqOugd8ueOmjVAxFUq"
         redirectUri={window.location.origin}
+        audience="https://dev-eggyuo3hd8fqyl5b.us.auth0.com/api/v2/"
+        scope="read:current_user update:current_user_metadata"
       >
         <App />
       </Auth0Provider>
