@@ -1,18 +1,28 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import Profile from "../Profile/Profile";
 
 const Header = () => {
-  return (
-    <nav className="grey darken-3">
-      <div className="container row">
-        <h3 className="main_header col s12 m4 l2">My App</h3>
-        <div className="col s12 m4 l8"></div>
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
 
-        <Link to={"/"} className="col s12 m4 l2">
-          Home
+  return (
+    <div className="container">
+      <nav className="navbar">
+        <h3 className="header">My App</h3>
+        <Link to={"/"} className="home-button">
+          <button className="ui button"> Home</button>
         </Link>
-      </div>
-    </nav>
+
+        {isAuthenticated ? (
+          <Profile />
+        ) : (
+          <button className="ui button" onClick={() => loginWithRedirect()}>
+            Log In
+          </button>
+        )}
+      </nav>
+    </div>
   );
 };
 
